@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成长记忆幼儿园管理后台</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base-manage.css">
+    <link rel="stylesheet" href="css/manage_small.css">
+</head>
+<body>
+<div id="loader" class='loader' v-show="show">
+    <div class='loader_overlay'></div>
+    <div class='loader_cogs'>
+        <div class='loader_cogs__top'>
+            <div class='top_part'></div>
+            <div class='top_part'></div>
+            <div class='top_part'></div>
+            <div class='top_hole'></div>
+        </div>
+        <div class='loader_cogs__left'>
+            <div class='left_part'></div>
+            <div class='left_part'></div>
+            <div class='left_part'></div>
+            <div class='left_hole'></div>
+        </div>
+        <div class='loader_cogs__bottom'>
+            <div class='bottom_part'></div>
+            <div class='bottom_part'></div>
+            <div class='bottom_part'></div>
+            <div class='bottom_hole'><!-- lol --></div>
+        </div>
+        <p>loading</p>
+    </div>
+</div>
+<header class="clearfix" id="header">
+    <div class="flow"><img @click="this.getFlow" src="images/refresh.png" alt="">今日视频访问次数: <span>{{monitor_flow}}</span>考勤访问次数: <span>{{attendance_flow}}</span> 相册访问次数: <span>{{photo_flow}}</span></div>
+    {{gartenName}}
+    <div class="cancel" @click="logout">退出</div>
+    <div class="manage">欢迎<span class="manage-name">{{name}}</span>登录</div>
+</header>
+<main id="main">
+    <nav id="nav">
+        <div class="sidebar-title"><img src="images/icon.png" alt="">个人中心<span></span></div>
+        <ul class="sidebar-content">
+            <li>
+                <router-link to="/personalInfo">个人信息</router-link>
+            </li>
+        </ul>
+        <div v-if="infoManage" class="sidebar-title"><img src="images/icon.png" alt="">信息管理<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.kindergartenManage">
+                <router-link to="/kindergartenManage">幼儿园信息</router-link>
+            </li>
+            <li v-if="permission.teacherManage">
+                <router-link to="/teacherManage">教职工管理</router-link>
+            </li>
+            <li v-if="permission.babyManage">
+                <router-link to="/babyManage">宝宝管理</router-link>
+            </li>
+            <li v-if="permission.patriarchManage">
+                <router-link to="/patriarchManage">家长管理</router-link>
+            </li>
+        </ul>
+        <div v-if="messageCenter" class="sidebar-title"><img src="images/icon.png" alt="">消息中心<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.pushInfo">
+                <router-link to="/pushInfo">消息推送</router-link>
+            </li>
+            <li v-if="permission.infoHistory">
+                <router-link to="/infoHistory">消息历史</router-link>
+            </li>
+            <li v-if="permission.applyPushInfo">
+                <router-link to="/applyPushInfo">申请发送短信</router-link>
+            </li>
+            <li v-if="permission.infoCheck">
+                <router-link to="/infoCheck">短信审核</router-link>
+            </li>
+        </ul>
+        <div v-if="classManage" class="sidebar-title"><img src="images/icon.png" alt="">班级管理<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.gradeManage">
+                <router-link to="/gradeManage">年级管理</router-link>
+            </li>
+            <li v-if="permission.classManage">
+                <router-link to="/classManage">班级管理</router-link>
+            </li >
+            <li v-if="permission.upGradeManage">
+                <router-link to="/upGradeManage">升班管理</router-link>
+            </li>
+        </ul>
+        <div v-if="attendanceManage" class="sidebar-title"><img src="images/icon.png" alt="">考勤管理<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.attendanceTimeManage">
+                <router-link to="/attendanceTimeManage">考勤时间管理</router-link>
+            </li>
+            <li v-if="permission.attendanceCardManage">
+                <router-link to="/attendanceCardManage">考勤卡管理</router-link>
+            </li>
+            <li v-if="permission.attendanceHistory">
+                <router-link to="/attendanceHistory">打卡记录</router-link>
+            </li>
+            <li v-if="permission.attendanceAnomalyManage">
+                <router-link to="/attendanceAnomalyManage">考勤异常管理</router-link>
+            </li>
+            <li v-if="permission.leaveManage">
+                <router-link to="/leaveManage">请假管理</router-link>
+            </li>
+        </ul>
+        <div v-if="morningCheck" class="sidebar-title"><img src="images/icon.png" alt="">晨检统计<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.morningCheckLook">
+                <router-link to="/morningCheckLook">晨检查看</router-link>
+            </li>
+        </ul>
+        <div v-if="curriculumManage" class="sidebar-title"><img src="images/icon.png" alt="">课程管理<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.curriculumManage">
+                <router-link to="/curriculumManage">课程管理</router-link>
+            </li>
+        </ul>
+        <div v-if="cookManage" class="sidebar-title"><img src="images/icon.png" alt="">食谱管理<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.cookbookSet">
+                <router-link to="/cookbookSet">食谱设置</router-link>
+            </li>
+            <li v-if="permission.cookbookList">
+                <router-link to="/cookbookList">食谱列表</router-link>
+            </li>
+        </ul>
+        <div v-if="financeManage" class="sidebar-title"><img src="images/icon.png" alt="">财务管理<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.payQuery">
+                <router-link to="/payQuery">付费查询</router-link>
+            </li>
+            <li v-if="permission.payFees">
+                <router-link to="/payFees">全园缴费</router-link>
+            </li>
+        </ul>
+        <div v-if="schoolManage" class="sidebar-title"><img src="images/icon.png" alt="">校园管理<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.schoolIntroduction">
+                <router-link to="/schoolIntroduction">校园简介</router-link>
+            </li>
+            <li v-if="permission.schoolActivity">
+                <router-link to="/schoolActivity">校园活动</router-link>
+            </li>
+        </ul>
+        <div v-if="other" class="sidebar-title"><img src="images/icon.png" alt="">其他<span></span></div>
+        <ul class="sidebar-content">
+            <li v-if="permission.ideaFeedback">
+                <router-link to="/ideaFeedback">意见反馈</router-link>
+            </li>
+        </ul>
+    </nav>
+    <section id="content">
+        <router-view></router-view>
+    </section>
+</main>
+</body>
+<script src="lib/vue/vue.js"></script>
+<script src="lib/vue/vue-router.js"></script>
+<script src="lib/jQuery/jquery-3.2.1.js"></script>
+<script src="lib/jQuery/qrcode.min.js"></script>
+<script src="js/vue-base-components.js"></script>
+<script src="js/vue-base-methods.js"></script>
+<script src="js/manage_small.js"></script>
+</html>

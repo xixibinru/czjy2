@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成长记忆代理商管理后台</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base-manage.css">
+    <link rel="stylesheet" href="css/manage_agent.css">
+</head>
+<body>
+<div id="loader" class='loader' v-show="show">
+    <div class='loader_overlay'></div>
+    <div class='loader_cogs'>
+        <div class='loader_cogs__top'>
+            <div class='top_part'></div>
+            <div class='top_part'></div>
+            <div class='top_part'></div>
+            <div class='top_hole'></div>
+        </div>
+        <div class='loader_cogs__left'>
+            <div class='left_part'></div>
+            <div class='left_part'></div>
+            <div class='left_part'></div>
+            <div class='left_hole'></div>
+        </div>
+        <div class='loader_cogs__bottom'>
+            <div class='bottom_part'></div>
+            <div class='bottom_part'></div>
+            <div class='bottom_part'></div>
+            <div class='bottom_hole'></div>
+        </div>
+        <p>loading</p>
+    </div>
+</div>
+<header id="header">
+    {{agentName}}
+    <div class="cancel" @click="logout">退出</div>
+    <div class="manage">欢迎<span class="manage-name">{{name}}</span>登录</div>
+</header>
+<main id="main">
+    <nav id="nav">
+        <div class="sidebar-title"><img src="images/icon.png" alt="">个人中心<span></span></div>
+        <ul class="sidebar-content">
+            <li>
+                <router-link to="/infoManage"><span></span>信息管理</router-link>
+            </li>
+        </ul>
+        <div class="sidebar-title"><img src="images/icon.png" alt="">财务管理<span></span></div>
+        <ul class="sidebar-content">
+            <li>
+                <router-link to="/buyCreditMoney"><span></span>信用额度管理</router-link>
+            </li>
+            <li>
+                <router-link to="/applyMoney"><span></span>提现管理</router-link>
+            </li>
+        </ul>
+        <div v-if="info.agentGrade != 3" class="sidebar-title"><img src="images/icon.png" alt="">子代理管理<span></span></div>
+        <ul v-if="info.agentGrade != 3" class="sidebar-content">
+            <li>
+                <router-link to="/agentList"><span></span>子代理列表</router-link>
+            </li>
+            <li>
+                <router-link to="/performanceStatistics"><span></span>子代理业绩统计</router-link>
+            </li>
+        </ul>
+        <div class="sidebar-title"><img src="images/icon.png" alt="">幼儿园管理<span></span></div>
+        <ul class="sidebar-content">
+            <li>
+                <router-link to="/kindergartenManage"><span></span>幼儿园管理</router-link>
+            </li>
+            <li>
+                <router-link to="/kindergartenApply"><span></span>开园申请</router-link>
+            </li>
+            <li>
+                <router-link to="/kindergartenFollow"><span></span>访园跟进</router-link>
+            </li>
+        </ul>
+        <div class="sidebar-title"><img src="images/icon.png" alt="">物料管理<span></span></div>
+        <ul class="sidebar-content">
+            <li>
+                <router-link to="/equipApply"><span></span>设备申请</router-link>
+            </li>
+            <li>
+                <router-link to="/afterApply"><span></span>售后申请</router-link>
+            </li>
+        </ul>
+        <div class="sidebar-title"><img src="images/icon.png" alt="">通知中心<span></span></div>
+        <ul class="sidebar-content">
+            <li>
+                <router-link to="/infoRecord"><span></span>通知记录</router-link>
+            </li>
+        </ul>
+    </nav>
+    <section id="content">
+        <router-view></router-view>
+        <form action=""></form>
+    </section>
+</main>
+</body>
+<script src="lib/vue/vue.js"></script>
+<script src="lib/vue/vue-router.js"></script>
+<script src="lib/jQuery/jquery-3.2.1.js"></script>
+<script src="lib/jQuery/qrcode.min.js"></script>
+<script src="js/vue-base-components.js"></script>
+<script src="js/vue-base-methods.js"></script>
+<script src="js/manage_agent.js"></script>
+</html>

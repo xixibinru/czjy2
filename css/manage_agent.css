@@ -1,0 +1,139 @@
+
+/*信用额度管理*/
+#content .creditMoneyManage label {
+    display: block;
+    line-height:80px;
+}
+#content .creditMoneyManage label + label {
+    margin-top: 10px;
+}
+#content .creditMoneyManage input[type="radio"] {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+
+}
+#content .creditMoneyManage label img {
+    width: 80px;
+    height: 80px;
+    margin: 0 30px;
+    vertical-align: middle;
+}
+#content .creditMoneyManage label img + span {
+    font-size: 30px;
+    line-height:80px;
+    vertical-align: middle;
+}
+#content .creditMoneyManage button {
+    margin-top: 10px;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    line-height:40px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #40d0a7;
+    font-size: 24px;
+    cursor: pointer;
+}
+/*访园跟进*/
+#content .pushInfo .pushInfo-info {
+    width: 100%;
+    padding: 8px 60px;
+    margin: 0 auto;
+    background-color: #fbfffb;
+}
+
+#content .pushInfo .pushInfo-info-title {
+    width: 100%;
+    min-width: 600px;
+    line-height: 200%;
+}
+
+#content .pushInfo .main {
+    margin-top: 10px;
+}
+
+#content .pushInfo div span {
+    position: absolute;
+    vertical-align: top;
+    margin-left: -50px;
+}
+
+#content .pushInfo div.pushInfo-info-main {
+    margin-top: 5px;
+}
+
+#content .pushInfo div textarea {
+    width: 100%;
+    min-width: 600px;
+    height: 316px;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 6px;
+    resize: none;
+}
+
+/*设备申请*/
+#content .equipApply .cart {
+    display: inline-block;
+    margin-top: 4px;
+    border-radius: 4px;
+    color: #fff;
+    height:30px;
+    padding-left:30px;
+    padding-right: 6px;
+    line-height:30px;
+    background: url(../images/cart.png) no-repeat center left 2px /26px 26px;
+    background-color: #40d0a7;
+    cursor: pointer;
+}
+#content .equipApply td span[data-text="已添加至购物车"] {
+    background-color: #ccc;
+}
+#content .equipApply td img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: text-bottom;
+    cursor: pointer;
+}
+
+#content .equipApply td img ~ em {
+    padding: 0 10px;
+}
+#content .equipApply .account {
+    width: 300px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-top: 4px;
+}
+#content .equipApply .account .totalPrice {
+    background-color: #fff;
+    color: #40d0a7;
+    float: left;
+    width: 40%;
+}
+#content .equipApply .account .buy {
+    float: left;
+    width: 60%;
+    background-color: #40d0a7;
+    color: #fff;
+    cursor: pointer;
+}
+#content .equipApply .cart-order {
+    position: absolute;
+    left:0;
+    right:0;
+    top: 60px;
+    width: 660px;
+    margin: 0 auto;
+}
+#content .applyList table td:nth-of-type(1){
+    max-width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

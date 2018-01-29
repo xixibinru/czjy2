@@ -1,0 +1,678 @@
+html, body {
+    height: 100%;
+}
+#header {
+    padding: 0 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    height: 50px;
+    background-color: #3c4a55;
+    line-height: 50px;
+    font-size: 24px;
+    text-align: center;
+    color: #ebeef0;
+    min-width: 1180px;
+}
+#header .manage,
+#header .cancel {
+    position: absolute;
+    font-size: 16px;
+}
+
+#header .manage {
+    padding-right: 30px;
+    top: 0;
+    right: 100px;
+    border-right: 1px solid #ebeef0;
+}
+
+#header .manage .manage-name {
+    color: #ffcc01;
+}
+
+#header .cancel {
+    top: 0;
+    right: 20px;
+    width: 80px;
+    cursor: pointer;
+}
+#header .cancel:hover {
+    color: #f32025;
+}
+
+#nav {
+    position: fixed;
+    padding-top: 50px;
+    top: 0;
+    bottom: 0;
+    background-color: #f6f9fa;
+    width: 220px;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    vertical-align: middle;
+    font-size: 14px;
+    cursor: pointer;
+    color: #666;
+}
+
+#nav .sidebar-title {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    letter-spacing: 0.02em;
+    border: 1px solid #ebeef3;
+    padding-left: 22px;
+}
+
+#nav .sidebar-title + .sidebar-title {
+    margin-top: -1px;
+}
+
+#nav .sidebar-title:hover {
+    background-color: #d9eceb;
+}
+
+#nav .sidebar-title.current {
+    background-color: #40d0a7;
+    color: #fff;
+}
+
+#nav .sidebar-title img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#nav .sidebar-title span {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    width: 13px;
+    height: 13px;
+    vertical-align: middle;
+    margin-top: 10px;
+    margin-left: -10px;
+    background: url(../images/arrow_bottom.png) no-repeat 0 0/100%;
+}
+
+#nav span.current {
+    background: url(../images/arrow_top.png) no-repeat 0 0/100%;
+}
+
+#nav .sidebar-content {
+    display: none;
+}
+
+#nav .sidebar-content li {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 53px;
+    border: 1px solid #ebeef3;
+}
+
+#nav .sidebar-content li + li {
+    margin-top: -1px;
+}
+
+#nav .sidebar-content li:hover {
+    background-color: #d9eceb;
+}
+
+#nav .sidebar-content li a {
+    color: #666;
+    display: block;
+}
+
+#nav .sidebar-content li a.current {
+    color: #40d0a7;
+}
+
+/*内容部分*/
+#content {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 220px;
+    right: 0;
+    padding: 4px 4px 0 4px;
+    font-size: 16px;
+    line-height: 150%;
+}
+
+#content .address3,
+#content .date {
+    display: inline-block;
+}
+
+#content .inlineBlock {
+    display: inline-block;
+}
+
+#content input {
+    border: 1px solid #40d0a7;
+    border-radius: 4px;
+    transition: box-shadow ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#content input:focus {
+    box-shadow: 0px 0px 5px 0px #40d0a7, -0px -0px 1px 0px #40d0a7;
+}
+
+#content input[type="text"],
+#content input[type="password"] {
+    font-size: 14px;
+    padding-left: 5px;
+    width: 120px;
+    margin-right: 10px;
+}
+
+#content input[disabled] {
+    background-color: #f6f9fa;
+    cursor: not-allowed;
+    border: none;
+}
+
+/*所有select样式*/
+#content select {
+    padding-bottom: 4px;
+    margin-right: 10px;
+    background-color: #f6f4ff;
+    color: #000;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+#content select[disabled] {
+    background-color: #bababa;
+    cursor: not-allowed;
+}
+
+/*所有表格组件默认样式*/
+#content table {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 4px;
+    collapse: collapse;
+    border-spacing: 0;
+    min-width: 680px;
+}
+
+#content table th,
+#content table td {
+    border: 1px solid #eee;
+    font-size: 16px;
+    text-align: center;
+    min-width: 80px;
+    padding: 0 6px;
+    height: 32px;
+    line-height: 32px;
+}
+
+#content table th {
+    background-color: #f5f5f5;
+    color: #b0b0b0;
+
+}
+
+#content table td {
+    color: #8c8c8c;
+}
+
+#content table tr:hover {
+    background-color: #fafafa;
+}
+
+/*#content table tr:nth-of-type(2n) td {*/
+/*background-color: #edffca;*/
+/*}*/
+
+/*#content table tr:nth-of-type(2n-1) td {*/
+/*background-color: #dfffbc;*/
+/*}*/
+
+#content table th + th,
+#content table td + td {
+    border-left: none;
+}
+
+#content td .monitor {
+    width: 16px;
+    height: 16px;
+}
+
+#content td.operation {
+    text-align: center
+}
+
+#content table span {
+    display: inline-block;
+    padding: 0 10px;
+    background-color: #40d0a7;
+    color: #fff;
+    cursor: pointer;
+    line-height: 180%;
+    border-radius: 4px;
+}
+
+#content table span + span {
+    margin-left: 10px;
+}
+
+/*所有分页样式 跟随表格*/
+#content .paging {
+    line-height: 150%;
+    font-size: 16px;
+    padding: 0 20px;
+    color: #3c4a55;
+}
+
+#content .paging .first,
+#content .paging .last,
+#content .paging .prev,
+#content .paging .next {
+    text-align: center;
+    font-size: 16px;
+    line-height: 150%;
+    background-color: #40d0a7;
+    color: #fff;
+    margin-right: 20px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+#content .paging span {
+    color: #40d0a7;
+}
+
+#content .paging .input-go {
+    font-size: 16px;
+    line-height: 120%;
+    width: 60px;
+    margin-left: 20px;
+}
+
+#content .paging .go {
+    text-align: center;
+    font-size: 16px;
+    line-height: 150%;
+    background-color: #40d0a7;
+    width: 30px;
+    margin-left: 5px;
+    color: #fff;
+}
+
+inputNameAndPhone {
+    display: inline-block;
+}
+
+/*所有 导航条 查找 筛选 样式*/
+#content .nav {
+    color: #666;
+}
+
+#content .nav div {
+    font-size: 16px;
+    display: inline-block;
+    line-height: 30px;
+    padding: 0 6px;
+    cursor: pointer;
+    background-color: #ebeef3;
+}
+
+#content .nav div + div {
+    margin-left: 8px;
+}
+
+#content .nav div:hover,
+#content .nav .current {
+    background-color: #40d0a7;
+    color: #fff;
+}
+
+#content .filter {
+    min-width: 800px;
+    background-color: #f6f9fa;
+    color: #666;
+    line-height: 150%;
+    padding: 4px 0 4px 10px;
+}
+
+#content .filter input[class="name"] {
+    width: 80px;
+}
+
+#content .filter input[class="identityCard"] {
+    width: 180px;
+}
+
+#content .filter select {
+    margin-top: -3px;
+    font-size: 14px;
+    height: 22px;
+    color: #000;
+    padding-bottom: 0;
+}
+
+/*所有添加幼儿园、家长、老师、宝宝数据样式*/
+#content .add-Newdata,
+#content .look-Detaildata {
+    border: 1px solid #ebeef3;
+    padding: 20px 15px 10px 15px;
+    background-color: #fbfffb;
+}
+
+#content .add-Newdata::after,
+#content .look-Detaildata::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+#content .add-Newdata h3,
+#content .add-Newdata > div,
+#content .look-Detaildata h3,
+#content .look-Detaildata > div {
+    color: #34a27e;
+}
+
+#content .add-Newdata h3,
+#content .look-Detaildata h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    line-height: 150%;
+    /*text-align: center;*/
+}
+
+#content .add-Newdata > div,
+#content .look-Detaildata > div {
+    line-height: 200%;
+    margin-top: 10px;
+    color: #194533;
+    /*float: left;*/
+    padding-right: 40px;
+    /*width: 50%;*/
+}
+
+/*#content .add-Newdata > div div,*/
+/*#content .look-Detaildata > div div{*/
+/*display: block;*/
+/*}*/
+
+#content .add-Newdata > div input[type="text"],
+#content .look-Detaildata > div input[type="text"] {
+    display: block;
+    width: 600px;
+    line-height: 200%;
+}
+#content .add-Newdata > div textarea,
+#content .look-Detaildata > div textarea {
+    display: block;
+    resize: none;
+    width: 600px;
+    min-height: 180px;
+    font-size: 15px;
+    border: 1px solid #40d0a7;
+    border-radius: 4px;
+    padding: 5px;
+    color: #333;
+    line-height:150%;
+}
+#content .add-Newdata > div textarea:focus,
+#content .look-Detaildata > div textarea:focus {
+    box-shadow: 0px 0px 5px 0px #40d0a7, -0px -0px 1px 0px #40d0a7;
+}
+
+#content .add-Newdata > div.postData,
+#content .look-Detaildata > div.postData {
+    width: 100%;
+}
+
+#content .add-Newdata > div.postData input,
+#content .look-Detaildata > div.postData input {
+    background-color: #40d0a7;
+}
+
+#content .add-Newdata .mark,
+#content .look-Detaildata .mark {
+    padding-left: 15px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+#content .add-Newdata .remark,
+#content .look-Detaildata .remark {
+    width: 600px;
+    height: 100px;
+    resize: none;
+    font-size: 16px;
+    padding: 5px;
+}
+#content .look-Detaildata label {
+    cursor: pointer;
+}
+
+#content .look-Detaildata img {
+    width: 600px;
+    height: 400px;
+    border-radius: 4px;
+}
+
+#content .add-Newdata input[name="birth"] {
+    width: 50px;
+}
+
+#content .add-Newdata input[name="birth"] + input[name="birth"] {
+    margin-left: 10px;
+}
+
+/*所有查看幼儿园、家长、老师、宝宝详细信息样式*/
+#content .btn,
+#content .btn-skyblue,
+#content .save,
+#content .clear {
+    display: inline-block;
+    padding: 0 14px;
+    line-height: 22px;
+    background-color: #40d0a7;
+    cursor: pointer;
+    color: #fff;
+}
+#content .btn-skyblue {
+    border-radius: 4px;
+    background-color: #31beff;
+}
+
+#content .btn-skyblue + .btn-skyblue {
+    margin-left: 10px;
+}
+
+#content .save + .clear {
+    margin-left: 20px;
+}
+
+#content .look-Detaildata {
+    position: absolute;
+    top: 4px;
+    min-width: 680px;
+    min-height: 100%;
+    left: 4px;
+    right: 4px;
+    padding: 10px 15px;
+    background-color: #fbfffb;
+    color: #000;
+    border: 1px solid #ebeef3;
+}
+
+/*#content .look-Detaildata h3,*/
+/*#content .look-Detaildata div {*/
+/*line-height: 150%;*/
+/*}*/
+
+/*#content .look-Detaildata h3 {*/
+/*color: #34a27e;*/
+/*}*/
+
+/*#content .look-Detaildata div {*/
+/*margin-top: 5px;*/
+/*}*/
+
+/*#content .look-Detaildata input[type="text"] {*/
+/*padding-left: 5px;*/
+/*line-height: 150%;*/
+/*}*/
+
+/*#content .look-Detaildata select {*/
+/*background-color: #fff;*/
+/*color: #000;*/
+/*}*/
+
+/*#content .look-Detaildata textarea {*/
+/*width: 400px;*/
+/*height: 100px;*/
+/*resize: none;*/
+/*}*/
+
+/*#content .look-Detaildata table {*/
+/*color: #000;*/
+/*}*/
+
+/*信用额度管理*/
+#content .creditMoneyManage label {
+    display: block;
+    line-height:80px;
+}
+#content .creditMoneyManage label + label {
+    margin-top: 10px;
+}
+#content .creditMoneyManage input[type="radio"] {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+
+}
+#content .creditMoneyManage label img {
+    width: 80px;
+    height: 80px;
+    margin: 0 30px;
+    vertical-align: middle;
+}
+#content .creditMoneyManage label img + span {
+    font-size: 30px;
+    line-height:80px;
+    vertical-align: middle;
+}
+#content .creditMoneyManage button {
+    margin-top: 10px;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    line-height:40px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #40d0a7;
+    font-size: 24px;
+    cursor: pointer;
+}
+/*访园跟进*/
+#content .pushInfo .pushInfo-info {
+    width: 100%;
+    padding: 8px 60px;
+    margin: 0 auto;
+    background-color: #fbfffb;
+}
+
+#content .pushInfo .pushInfo-info-title {
+    width: 100%;
+    min-width: 600px;
+    line-height: 200%;
+}
+
+#content .pushInfo .main {
+    margin-top: 10px;
+}
+
+#content .pushInfo div span {
+    position: absolute;
+    vertical-align: top;
+    margin-left: -50px;
+}
+
+#content .pushInfo div.pushInfo-info-main {
+    margin-top: 5px;
+}
+
+#content .pushInfo div textarea {
+    width: 100%;
+    min-width: 600px;
+    height: 316px;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 6px;
+    resize: none;
+}
+
+/*设备申请*/
+#content .equipApply .cart {
+    display: inline-block;
+    margin-top: 4px;
+    border-radius: 4px;
+    color: #fff;
+    height:30px;
+    padding-left:30px;
+    padding-right: 6px;
+    line-height:30px;
+    background: url(../images/cart.png) no-repeat center left 2px /26px 26px;
+    background-color: #40d0a7;
+    cursor: pointer;
+}
+#content .equipApply td span[data-text="已添加至购物车"] {
+    background-color: #ccc;
+}
+#content .equipApply td img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: text-bottom;
+    cursor: pointer;
+}
+
+#content .equipApply td img ~ em {
+    padding: 0 10px;
+}
+#content .equipApply .account {
+    width: 300px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-top: 4px;
+}
+#content .equipApply .account .totalPrice {
+    background-color: #fff;
+    color: #40d0a7;
+    float: left;
+    width: 40%;
+}
+#content .equipApply .account .buy {
+    float: left;
+    width: 60%;
+    background-color: #40d0a7;
+    color: #fff;
+    cursor: pointer;
+}
+#content .equipApply .cart-order {
+    position: absolute;
+    left:0;
+    right:0;
+    top: 60px;
+    width: 660px;
+    margin: 0 auto;
+}
+#content .applyList table td:nth-of-type(1){
+    max-width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

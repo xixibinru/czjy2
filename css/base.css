@@ -1,0 +1,424 @@
+/*
+    初始化
+*/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, input, form, fieldset, legend, img, div, i, header, footer, section, nav, a, main, textarea, table, th, td {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+i, ins, em, strong {
+    font-style: normal;
+    text-decoration: none;
+}
+
+fieldset, img, input, button, ::before, ::after {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+select, input {
+    vertical-align: middle;
+}
+
+select, input, textarea {
+    margin: 0;
+}
+
+body {
+    font-family: "Microsoft YaHei", "宋体";
+    margin: 0 auto;
+    position: relative;
+    font-size: 0.24rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+input, button, select, textarea {
+    outline: none;
+}
+
+.clearfix::before, .clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+[v-cloak] {
+    display: none;
+}
+/*css3 loading动画*/
+body .loader {
+    height: 100%;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    z-index: 1;
+}
+
+body .loader_overlay {
+    width: 150px;
+    height: 150px;
+    background: transparent;
+    box-shadow: 0px 0px 0px 1000px rgba(0, 0, 0, 0.67), 0px 0px 19px 0px rgba(0, 0, 0, 0.16) inset;
+    border-radius: 100%;
+    z-index: -1;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+body .loader_cogs {
+    z-index: -2;
+    width: 100px;
+    height: 100px;
+    top: -120px !important;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+body .loader_cogs p {
+    font-size: 24px;
+    color: #6cdaee;
+    text-align: center;
+}
+
+body .loader_cogs__top {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    -webkit-transform-origin: 50px 50px;
+    transform-origin: 50px 50px;
+    -webkit-animation: rotate 10s infinite linear;
+    animation: rotate 10s infinite linear;
+}
+
+body .loader_cogs__top div:nth-of-type(1) {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+body .loader_cogs__top div:nth-of-type(2) {
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
+body .loader_cogs__top div:nth-of-type(3) {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+body .loader_cogs__top div.top_part {
+    width: 100px;
+    border-radius: 10px;
+    position: absolute;
+    height: 100px;
+    background: #f98db9;
+}
+
+body .loader_cogs__top div.top_hole {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+body .loader_cogs__left {
+    position: relative;
+    width: 80px;
+    -webkit-transform: rotate(16deg);
+    transform: rotate(16deg);
+    top: 28px;
+    -webkit-transform-origin: 40px 40px;
+    transform-origin: 40px 40px;
+    -webkit-animation: rotate_left 10s .1s infinite reverse linear;
+    animation: rotate_left 10s .1s infinite reverse linear;
+    left: -24px;
+    height: 80px;
+}
+
+body .loader_cogs__left div:nth-of-type(1) {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+body .loader_cogs__left div:nth-of-type(2) {
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
+body .loader_cogs__left div:nth-of-type(3) {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+body .loader_cogs__left div.left_part {
+    width: 80px;
+    border-radius: 6px;
+    position: absolute;
+    height: 80px;
+    background: #97ddff;
+}
+
+body .loader_cogs__left div.left_hole {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+body .loader_cogs__bottom {
+    position: relative;
+    width: 60px;
+    top: -65px;
+    -webkit-transform-origin: 30px 30px;
+    transform-origin: 30px 30px;
+    -webkit-animation: rotate_left 10.2s .4s infinite linear;
+    animation: rotate_left 10.2s .4s infinite linear;
+    -webkit-transform: rotate(4deg);
+    transform: rotate(4deg);
+    left: 79px;
+    height: 60px;
+}
+
+body .loader_cogs__bottom div:nth-of-type(1) {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+body .loader_cogs__bottom div:nth-of-type(2) {
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
+body .loader_cogs__bottom div:nth-of-type(3) {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+body .loader_cogs__bottom div.bottom_part {
+    width: 60px;
+    border-radius: 5px;
+    position: absolute;
+    height: 60px;
+    background: #ffcd66;
+}
+
+body .loader_cogs__bottom div.bottom_hole {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+/* Animations */
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate_left {
+    from {
+        -webkit-transform: rotate(16deg);
+        transform: rotate(16deg);
+    }
+    to {
+        -webkit-transform: rotate(376deg);
+        transform: rotate(376deg);
+    }
+}
+
+@keyframes rotate_left {
+    from {
+        -webkit-transform: rotate(16deg);
+        transform: rotate(16deg);
+    }
+    to {
+        -webkit-transform: rotate(376deg);
+        transform: rotate(376deg);
+    }
+}
+
+@-webkit-keyframes rotate_right {
+    from {
+        -webkit-transform: rotate(4deg);
+        transform: rotate(4deg);
+    }
+    to {
+        -webkit-transform: rotate(364deg);
+        transform: rotate(364deg);
+    }
+}
+
+@keyframes rotate_right {
+    from {
+        -webkit-transform: rotate(4deg);
+        transform: rotate(4deg);
+    }
+    to {
+        -webkit-transform: rotate(364deg);
+        transform: rotate(364deg);
+    }
+}
+
+/*时间表样式*/
+.timeTable {
+    display: inline-block;
+}
+.timeTable-outer {
+    width: 100px;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #e3e1ec;
+    color: #333;
+}
+.timeTable-main {
+    position: absolute;
+    z-index: 1;
+    width: 300px;
+    border: 1px solid #40d0a7;
+    background-color: #fff;
+}
+
+.timeTable-main .timeTitle {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size:24px;
+    background-color: #40d0a7;
+}
+
+.timeTable-main .timeTitle i {
+    position: absolute;
+    width: 36px;
+    height: 40px;
+    background: url(../images/prevYear.png) no-repeat center center / 100% 100%;
+    cursor: pointer;
+}
+
+.timeTable-main .timeTitle .prevYear {
+    left: 0;
+    background-image: url(../images/prevYear.png);
+}
+
+.timeTable-main .timeTitle .prevMonth {
+    left: 40px;
+    background-image: url(../images/prevMonth.png);
+}
+
+.timeTable-main .timeTitle .nextYear {
+    right: 0;
+    background-image: url(../images/nextYear.png);
+}
+
+.timeTable-main .timeTitle .nextMonth {
+    right: 40px;
+    background-image: url(../images/nextMonth.png);
+}
+.timeTable-main .timeContent .week span {
+    display: inline-block;
+    width: 14.28%;
+    height: 42.83px;
+    line-height: 42.83px;
+    text-align: center;
+    font-size:16px;
+    font-weight: 700;
+}
+.timeTable-main .timeContent .day div {
+    float: left;
+    width: 42.55px;
+    height: 42.83px;
+    text-align: center;
+    font-size:16px;
+    padding: 6px;
+}
+.timeTable-main .timeContent .day span {
+    display: block;
+    height: 100%;
+    line-height:30.83px;
+    border-radius: 50%;
+    color: #333;
+
+}
+.timeTable-main .timeContent .render-main span:hover {
+    background-color: #40d0a7;
+    color: #fff;
+    cursor: pointer;
+}
+.timeTable-main .timeContent .day .otherMonth { /*其他月份的字体显示灰色*/
+    color: #ccc;
+}
+.timeTable-main .timeContent .day .current_day { /*初始化后当前天样式*/
+    background-color: #28aeff;
+    color: #fff;
+}
+.timeTable-main .timeContent .day .select_day { /*当前点击后选择的日期*/
+    background-color: #40d0a7;
+    color: #fff;
+}
+

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成长记忆管理后台登录</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+<header id="header">成长记忆</header>
+<section v-cloak id="login">
+    <h3>成长记忆管理后台</h3>
+    <input class="admin" type="text" v-model.trim="phoneNumber" placeholder="请输入管理员账号">
+    <input class="password" type="password" @keyup.enter="postData(login)" v-model="password" placeholder="请输入管理员密码">
+    <div class="other">
+        <sel-identity :hide-teacher="true" @give-identity="getIdentity" class="inlineBlock"></sel-identity>
+        <input type="button" class="alterAndFindPwd btn" @click="show_alterAndFindPwd=true" value="修改/找回密码">
+    </div>
+    <input @click="postData(login)" class="login btn" type="button" value="登 录">
+    <div class="alterAndFindPwd_content" v-if="show_alterAndFindPwd">
+        <div class="clear" @click="show_alterAndFindPwd=false">×</div>
+        <h3>修改、找回密码</h3>
+        <sel-identity  @give-identity="getIdentity"></sel-identity>
+        <div>手机号: <input v-model="phoneNumber" type="text"></div>
+        <div>新密码: <input v-model="newPassword" type="newPassword"></div>
+        <div>请输入验证码:
+            <input class="number" type="text" v-model="number">
+            <input class="btn" @click="postData(getSecurityCode)" class="btn" type="button" value="发送短信获取验证码">
+        </div>
+        <div><input class="btn btn2" @click="postData(updatePassword)" class="btn" type="button" value="提交"></div>
+    </div>
+</section>
+</body>
+<script src="lib/jQuery/jquery-3.2.1.js"></script>
+<script src="lib/vue/vue.js"></script>
+<script src="js/vue-base-methods.js"></script>
+<script>
+    window.addEventListener('load',function(){
+        (function (window,document) {
+        if(!localStorage.bg_num){
+            localStorage.bg_num = 0;
+        }
+        var num = + localStorage.bg_num,
+            body = document.querySelector('body');
+        if(num % 2 == 0){
+            body.style.backgroundImage = 'url(images/bg.jpg)';
+        }else {
+            body.style.backgroundImage = 'url(images/bg_01.jpg)';
+        }
+        num += 1;
+        localStorage.bg_num = num;
+
+        Vue.component('sel-identity',{
+            props:['hide-teacher'],
+            template:
+            '<div>' +
+                '<input type="button" class="identity btn" @click="show_identity=!show_identity" :value="identity">'+
+                '<ul class="sel_identity" @click="show_identity = false" v-show="show_identity">'+
+                    '<li><input v-model="identity" type="radio" id="identity_1" name="identity" value="总控制端"><label for="identity_1">总控制端</label></li>'+
+                    '<li><input v-model="identity" type="radio" id="identity_2" name="identity" value="幼儿园端"><label for="identity_2">幼儿园端</label></li>'+
+                    '<li><input v-model="identity" type="radio" id="identity_3" name="identity" value="代理商端"><label for="identity_3">代理商端</label></li>'+
+                    '<li v-if="!hideTeacher"><input v-model="identity" type="radio" id="identity_4" name="identity" value="老师端"><label for="identity_4">老师端</label></li>'+
+                '</ul>'+
+            '</div>',
+            data: function () {
+                return {
+                    show_identity: false,
+                    identity: '请选择身份',
+                }
+            },
+            watch: {
+                identity: function () {
+                    this.$emit('give-identity',this.identity);
+                }
+            },
+            created: function () {
+                console.log(this.hideTeacher);
+            }
+        });
+        var baseUrl = Vue.prototype.$getOrigin();
+        var login = new Vue({
+            el: '#login',
+            data: {
+                show_alterAndFindPwd: false,
+                show_identity: false,
+                identity: '请选择身份',
+                phoneNumber: '',
+                password: '',
+                newPassword: '',
+                number: ''
+            },
+            computed:{
+                baseUrl: function () {
+                    switch(this.identity){
+                        case '总控制端':
+                            return baseUrl + '/bigcontrol';
+                            break;
+                        case '幼儿园端':
+                        case '老师端':
+                            return baseUrl + '/smallcontrol';
+                            break;
+                        case '代理商端':
+                            return baseUrl + '/agent';
+                            break;
+                    }
+                },
+                login:function () {
+                    var self = this;
+                    return {
+                        url: this.baseUrl+'/login.do',
+                        data: {
+                            phoneNumber: this.phoneNumber,
+                            pwd: this.password
+                        },
+                        type: 'post',
+                        success:function (data) {
+                            if(data.state){
+                                switch(self.identity){
+                                    case '总控制端':
+                                        sessionStorage.info = JSON.stringify(data.info);
+                                        console.log(sessionStorage.info);
+                                        window.location.href = baseUrl + '/manage_big.html#/personalCenter';
+                                        break;
+                                    case '幼儿园端':
+                                    case '老师端':
+                                        sessionStorage.gartenName = data.gartenName;
+                                        sessionStorage.info = JSON.stringify(data.info);
+                                        window.location.href = baseUrl + '/manage_small.html#/personalInfo';
+                                        break;
+                                    case '代理商端':
+                                        sessionStorage.info = JSON.stringify(data.info);
+                                        window.location.href = baseUrl + '/manage_agent.html#/infoManage';
+                                        break;
+                                }
+                            }else{
+                                alert('账号或密码错误');
+                            }
+                        }
+                    }
+                },
+                getSecurityCode:function () {
+                    var url = '';
+                    switch(this.identity){
+                        case '总控制端':
+                            url = baseUrl + '/worker/sendControl.do';
+                            break;
+                        case '幼儿园端':
+                            url = baseUrl + '/worker/sendControlSmall.do';
+                            break;
+                        case '代理商端':
+                            url = baseUrl + '/worker/sendControlAgent.do';
+                            break;
+                        case '老师端':
+                            url = baseUrl + '/worker/sendCheckWorker.do';
+                            break;
+
+                    }
+                    return {
+                        url: url,
+                        type: 'post',
+                        data: {
+                            phoneNumber: this.phoneNumber
+                        },
+                        success:function (data) {
+                            console.log(data);
+                            if(data.state){
+                                alert('验证码发送成功');
+                            }
+                        },
+                        error:function () {
+                            alert('验证码发送失败');
+                        }
+                    }
+                },
+                updatePassword:function () {
+                    var url = '';
+                    if(this.identity == '老师端'){
+                        url = baseUrl + '/worker/updateLogin.do';
+                    }else {
+                        url = this.baseUrl+'/updateLogin.do';
+                    }
+                    return {
+                        url: url,
+                        type: 'post',
+                        data: {
+                            phoneNumber: this.phoneNumber,
+                            number: this.number,
+                            pwd: this.newPassword
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            switch(data.state){
+                                case 0:
+                                    alert('密码修改失败');
+                                    break;
+                                case 1:
+                                    alert('密码修改成功');
+                                    break;
+                                case 2:
+                                    alert('验证码错误');
+                                    break;
+                            }
+                        }
+                    }
+                }
+            },
+            // watch: {
+            //     identity: function () {
+            //         switch(this.identity){
+            //             case '总控制端':
+            //                 this.baseUrl = baseUrl + '/bigcontrol';
+            //                 break;
+            //             case '幼儿园端':
+            //                 this.baseUrl = baseUrl + '/smallcontrol';
+            //                 break;
+            //             case '代理商端':
+            //                 this.baseUrl = baseUrl + '/agent';
+            //                 break;
+            //             case '老师端':
+            //                 this.baseUrl = baseUrl + '/bigWorker';
+            //                 break;
+            //         }
+            //     }
+            // },
+            methods: {
+                getIdentity: function (identity) {
+                    this.identity = identity;
+                },
+                postData:function (option) {
+                    if(option === this.login){
+                        if(!this.phoneNumber) {
+                            alert('请输入账号');
+                            return;
+                        };
+                        if(!this.password) {
+                            alert('请输入密码');
+                            return;
+                        };
+                        if(this.identity == '请选择身份') {
+                            alert('未选择身份');
+                            return;
+                        }
+                    }
+                    if(this.identity == '请选择身份') {
+                        alert('未选择身份');
+                        return;
+                    }
+                    $.ajax(option);
+                }
+            }
+        });
+    })(window,document);
+    });
+</script>
+</html>

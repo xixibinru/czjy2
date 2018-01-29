@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成长记忆管理后台</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base-manage.css">
+    <link rel="stylesheet" href="css/manage_big.css">
+</head>
+<body>
+<div id="loader" class='loader' v-show="show">
+    <div class='loader_overlay'></div>
+    <div class='loader_cogs'>
+        <div class='loader_cogs__top'>
+            <div class='top_part'></div>
+            <div class='top_part'></div>
+            <div class='top_part'></div>
+            <div class='top_hole'></div>
+        </div>
+        <div class='loader_cogs__left'>
+            <div class='left_part'></div>
+            <div class='left_part'></div>
+            <div class='left_part'></div>
+            <div class='left_hole'></div>
+        </div>
+        <div class='loader_cogs__bottom'>
+            <div class='bottom_part'></div>
+            <div class='bottom_part'></div>
+            <div class='bottom_part'></div>
+            <div class='bottom_hole'></div>
+        </div>
+        <p>loading</p>
+    </div>
+</div>
+<header id="header">
+    成长记忆管理后台
+    <div class="cancel" @click="logout">退出</div>
+    <div class="manage">欢迎<span class="manage-name">{{name}}</span>登录</div>
+</header>
+<main id="main">
+    <nav id="nav">
+        <div class="sidebar-title"><img src="images/icon.png" alt="">个人中心<span></span></div>
+        <ul class="sidebar-content index">
+            <li>
+                <router-link to="/personalCenter">个人信息</router-link>
+            </li>
+        </ul>
+        <div v-if="gartenManage" class="sidebar-title"><img src="images/icon.png" alt="">幼儿园管理<span></span></div>
+        <ul class="sidebar-content index">
+            <li v-if="permission.infoStatistics">
+                <router-link to="/infoStatistics">统计</router-link>
+            </li>
+            <li v-if="permission.infoManage">
+                <router-link to="infoManage">信息管理</router-link>
+            </li>
+            <li v-if="permission.kindergartenManage">
+                <router-link to="/kindergartenManage">幼儿园管理</router-link>
+            </li>
+            <li v-if="permission.attendanceCardManage">
+                <router-link to="/attendanceCardManage">考勤卡管理</router-link>
+            </li>
+            <li v-if="permission.clearUnusual">
+                <router-link to="/clearUnusual">清除考勤异常</router-link>
+            </li>
+        </ul>
+        <div v-if="check" class="sidebar-title"><img src="images/icon.png" alt="">审核<span></span></div>
+        <ul class="sidebar-content index">
+            <li v-if="permission.kindergartenCheck">
+                <router-link to="/kindergartenCheck">开园审核</router-link>
+            </li>
+        </ul>
+        <div v-if="agentManage" class="sidebar-title"><img src="images/icon.png" alt="">代理商管理<span></span></div>
+        <ul class="sidebar-content agent">
+            <li v-if="permission.agentManage">
+                <router-link to="/agentManage">代理商管理</router-link>
+            </li>
+            <li v-if="permission.agentPerformance">
+                <router-link to="/agentPerformance">代理商业绩统计</router-link>
+            </li>
+            <li v-if="permission.agentCard">
+                <router-link to="/agentCard">代理商考勤卡</router-link>
+            </li>
+            <li v-if="permission.agentCredit">
+                <router-link to="/agentCredit">代理商购买信用额度</router-link>
+            </li>
+            <li v-if="permission.drawMoneyManage">
+                <router-link to="/drawMoneyManage">代理商提现管理</router-link>
+            </li>
+        </ul>
+        <div v-if="feeSet" class="sidebar-title"><img src="images/icon.png" alt="">费用设置<span></span></div>
+        <ul class="sidebar-content kindergartenPayFee">
+            <li v-if="permission.setChargePrice"><router-link to="/setChargePrice">视频、考勤收费价格设置</router-link></li>
+        </ul>
+        <div v-if="messageCenter" class="sidebar-title"><img src="images/icon.png" alt="">消息中心<span></span></div>
+        <ul class="sidebar-content inform">
+            <li v-if="permission.pushInfo"><router-link to="/pushInfo"><span></span>消息推送</router-link></li>
+        </ul>
+        <div v-if="terminalManage" class="sidebar-title"><img src="images/icon.png" alt="">终端管理<span></span></div>
+        <ul class="sidebar-content indent">
+            <li v-if="permission.attendanceMachine"><router-link to="/attendanceMachine"><span></span>考勤机</router-link></li>
+            <li v-if="permission.attendanceCamera"><router-link to="/attendanceCamera"><span></span>考勤摄像头</router-link></li>
+            <li v-if="permission.liveCamera"><router-link to="/liveCamera"><span></span>直播摄像头</router-link></li>
+        </ul>
+        <div v-if="equipManage" class="sidebar-title"><img src="images/icon.png" alt="">设备管理<span></span></div>
+        <ul class="sidebar-content indent">
+            <li v-if="permission.equipManage"><router-link to="/equipManage">设备管理</router-link></li>
+            <li v-if="permission.equipOrder"><router-link to="/equipOrder">设备订单处理</router-link></li>
+            <li v-if="permission.afterSales"><router-link to="/afterSales">设备售后处理</router-link></li>
+        </ul>
+        <div v-if="runCenter" class="sidebar-title"><img src="images/icon.png" alt="">运营中心<span></span></div>
+        <ul class="sidebar-content indent">
+            <li v-if="permission.orderLook"><router-link to="/orderLook"><span></span>订单查看</router-link></li>
+            <li v-if="permission.userFeedback"><router-link to="/userFeedback"><span></span>用户反馈</router-link></li>
+        </ul>
+        <div v-if="companyManage" class="sidebar-title"><img src="images/icon.png" alt="">公司管理<span></span></div>
+        <ul class="sidebar-content indent">
+            <li v-if="permission.staffManage"><router-link to="/staffManage"><span></span>员工管理</router-link></li>
+            <li v-if="permission.departmentManage"><router-link to="/departmentManage"><span></span>部门管理</router-link></li>
+            <li v-if="permission.jobManage"><router-link to="/jobManage"><span></span>职位管理</router-link></li>
+            <li v-if="permission.addReport"><router-link to="/addReport"><span></span>添加报表</router-link></li>
+            <li v-if="permission.totalReport"><router-link to="/totalReport"><span></span>全员报表</router-link></li>
+            <li v-if="permission.departmentReport"><router-link to="/departmentReport"><span></span>部门报表</router-link></li>
+            <li v-if="permission.kindergartenApply"><router-link to="/kindergartenApply"><span></span>开园申请</router-link></li>
+            <li v-if="permission.equipApply"><router-link to="/equipApply"><span></span>设备申请</router-link></li>
+            <li v-if="permission.departmentEquip"><router-link to="/departmentEquip"><span></span>部门设备</router-link></li>
+            <li v-if="permission.addActivity"><router-link to="/addActivity"><span></span>添加活动</router-link></li>
+            <li v-if="permission.totalActivity"><router-link to="/totalActivity"><span></span>全部活动</router-link></li>
+            <li v-if="permission.departmentActivity"><router-link to="/departmentActivity"><span></span>部门活动</router-link></li>
+            <li v-if="permission.employeeCard"><router-link to="/employeeCard"><span></span>员工考勤卡</router-link></li>
+            <li v-if="permission.employeePerformance"><router-link to="/employeePerformance"><span></span>员工业绩统计</router-link></li>
+            <li v-if="permission.operationLog"><router-link to="/operationLog"><span></span>员工操作记录</router-link></li>
+        </ul>
+        <div v-if="baseSet" class="sidebar-title"><img src="images/icon.png" alt="">基本设置<span></span></div>
+        <ul class="sidebar-content indent">
+            <li v-if="permission.parentRelation"><router-link to="/parentRelation"><span></span>家长与宝宝关系设置</router-link></li>
+            <li v-if="permission.gartenType"><router-link to="/gartenType"><span></span>幼儿园类型设置</router-link></li>
+            <!-- <li v-if="permission.emptyData"><router-link to="/emptyData"><span></span>清理无效数据</router-link></li> -->
+        </ul>
+    </nav>
+    <section id="content">
+        <router-view></router-view>
+    </section>
+</main>
+</body>
+<script src="lib/vue/vue.js"></script>
+<script src="lib/vue/vue-router.js"></script>
+<script src="lib/jQuery/jquery-3.2.1.js"></script>
+<script src="js/vue-base-components.js"></script>
+<script src="js/vue-base-methods.js"></script>
+<script src="js/manage_big.js"></script>
+</html>

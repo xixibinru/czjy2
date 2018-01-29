@@ -1,0 +1,334 @@
+/* 流量样式 */
+#header .flow {
+    position: absolute;
+    height:50px;
+    font-size: 14px;
+}
+#header .flow img {
+    width: 20px;
+    height: 20px;
+    margin-top: -2px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+#header .flow span {
+    color: #ffcc01;
+    padding: 0 10px;
+}
+/*推送消息界面*/
+#content .pushInfo .pushInfo-info {
+    width: 100%;
+    padding: 8px 60px;
+    margin: 0 auto;
+    background-color: #fbfffb;
+}
+
+#content .pushInfo .pushInfo-info-title {
+    width: 100%;
+    min-width: 600px;
+}
+
+#content .pushInfo .main {
+    margin-top: 10px;
+}
+
+#content .pushInfo div span {
+    position: absolute;
+    vertical-align: top;
+    margin-left: -50px;
+}
+
+#content .pushInfo div.pushInfo-info-main {
+    margin-top: 5px;
+}
+
+#content .pushInfo div textarea {
+    width: 100%;
+    min-width: 600px;
+    height: 316px;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 6px;
+    resize: none;
+}
+
+/*消息历史*/
+#content .infoHistory table td:nth-last-of-type(2) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+#content .infoHistory textarea {
+    width: 600px;
+    height: 320px;
+    resize: none;
+    font-size: 18px;
+}
+
+#content .infoCheck .reject {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60px;
+    width: 660px;
+    margin: 0 auto;
+}
+
+
+
+
+/*升班管理*/
+#content .upGrade .nowClass {
+    margin-top: 4px;
+    background-color: #dfffbc;
+    line-height: 150%;
+    padding: 4px 0 4px 10px;
+}
+
+#content .upGrade .nowClass .save {
+    background-color: #b8efc5;
+}
+
+
+
+/*课程管理 添加课程*/
+
+#content .curriculumManage table.course input {
+    text-align: center;
+    margin: 0;
+    width: 60px;
+    border: none;
+    background-color: transparent;
+}
+
+#content .curriculumManage table.course input:hover {
+    border: 1px solid #006105;
+}
+
+#content .curriculumManage .demo table {
+    width: 600px;
+    margin-left: 0;
+}
+
+/*食谱设置*/
+#content .date {
+    margin-left: 10px;
+}
+
+#content .cookbookSet .food,
+#content .cookbookList .food {
+    width: 300px;
+    float: left;
+    margin: 10px 0 0 10px;
+    border: 1px dashed #006105;
+    padding: 10px;
+}
+
+#content .cookbookSet div + div,
+#content .cookbookList div + div {
+    margin-top: 10px;
+}
+
+#content .cookbookSet .cookInfo,
+#content .cookbookList .cookInfo {
+    position: relative;
+    height: 120px;
+    line-height: 120px;
+}
+
+#content .cookbookSet label,
+#content .cookbookList label {
+    padding: 0 5px;
+    height: 20px;
+    line-height: 22px;
+    background-color: #40d0a7;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 86px;
+}
+
+#content .cookbookSet img.pic,
+#content .cookbookList img.pic {
+    width: 120px;
+    height: 100px;
+    margin-left: 4px;
+    border: 0;
+    outline: none;
+}
+
+#content .cookbookSet textarea,
+#content .cookbookList textarea {
+    resize: none;
+    width: 200px;
+    height: 50px;
+    vertical-align: bottom;
+}
+
+#content .cookbookSet .operation,
+#content .cookbookList .operation {
+    float: left;
+    width: 100%;
+    padding-left: 10px;
+    margin-top: 4px;
+}
+
+#content .cookbookSet .operation input + input,
+#content .cookbookList .operation input + input {
+    margin-left: 14px;
+}
+/*全园缴费*/
+#content .payFees label {
+    display: block;
+    line-height:80px;
+}
+#content .payFees label + label {
+    margin-top: 10px;
+}
+#content .payFees input[type="radio"] {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+
+}
+#content .payFees label img {
+    width: 80px;
+    height: 80px;
+    margin: 0 30px;
+    vertical-align: middle;
+}
+#content .payFees label img + span {
+    font-size: 30px;
+    line-height:80px;
+    vertical-align: middle;
+}
+#content .payFees button {
+    margin-top: 10px;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    line-height:40px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #40d0a7;
+    font-size: 24px;
+    cursor: pointer;
+}
+/*校园简介、活动*/
+#content .schoolSet iframe {
+    display: block;;
+    margin: 0 auto;
+}
+
+#content .schoolSet input[type="file"] {
+    display: none;
+}
+
+#content .schoolSet .introDetail {
+    width: 500px;
+    margin: 0 auto;
+}
+
+#content .schoolSet label {
+    position: relative;
+    display: block;
+    height: 200px;
+    border-bottom: 1px solid #ccc;
+    background: url(../images/addImage.jpg) no-repeat center center;
+}
+
+#content .schoolSet label img {
+    width: 100%;
+    height: 100%;
+}
+
+#content .schoolSet label img + .clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #40d0a7;
+    display: none;
+}
+
+#content .schoolSet label:hover .clear {
+    display: inline-block;
+
+}
+
+#content .schoolSet .content {
+    position: relative;
+    height: 200px;
+}
+
+#content .schoolSet textarea {
+
+}
+
+#content .schoolSet textarea {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    resize: none;
+    text-indent: 2em;
+    font-size: 14px;
+}
+
+#content .schoolSet .content .clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #40d0a7;
+    display: none;
+}
+
+#content .schoolSet .content:hover .clear {
+    display: inline-block;
+}
+
+#content .schoolSet .control-board {
+    position: fixed;
+    top: 90px;
+}
+
+#content .schoolSet .control-board input {
+    margin-left: 10px;
+}
+
+/*校园活动*/
+#content .schoolSet .control-board-active {
+    top: 150px;
+}
+
+#content h3 {
+    color: #40d0a7;
+    line-height: 150%;
+}
+
+#content .schoolSet .activity_input {
+    width: 100%;
+    line-height: 24px;
+}
+
+#content .schoolSet .activityIntro {
+    width: 750px;
+    margin: 0 auto;
+}
+
+#content .schoolSet .activityIntro img {
+    display: block;
+    height: 300px;
+    width: 100%;
+}
+
+#content .schoolSet .activityIntro p {
+    text-indent: 2em;
+    line-height: 150%;
+    color: #333;
+}
+
+

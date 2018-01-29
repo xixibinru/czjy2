@@ -1,0 +1,841 @@
+html, body {
+    height: 100%;
+}
+
+#header {
+    padding: 0 24px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    height: 50px;
+    background-color: #3c4a55;
+    line-height: 50px;
+    font-size: 24px;
+    text-align: center;
+    color: #ebeef0;
+    min-width: 1180px;
+}
+#header .flow {
+    position: absolute;
+    height:50px;
+    font-size: 14px;
+}
+#header .flow img {
+    width: 20px;
+    height: 20px;
+    margin-top: -2px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+#header .flow span {
+    color: #ffcc01;
+    padding: 0 10px;
+}
+#header .manage,
+#header .cancel {
+    position: absolute;
+    font-size: 16px;
+}
+
+#header .manage {
+    padding-right: 30px;
+    top: 0;
+    right: 100px;
+    border-right: 1px solid #ebeef0;
+}
+
+#header .manage .manage-name {
+    color: #ffcc01;
+}
+
+#header .cancel {
+    top: 0;
+    right: 20px;
+    width: 80px;
+    cursor: pointer;
+}
+#header .cancel:hover {
+    color: #f32025;
+}
+
+#nav {
+    position: fixed;
+    padding-top: 50px;
+    top: 0;
+    bottom: 0;
+    background-color: #f6f9fa;
+    width: 220px;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    vertical-align: middle;
+    font-size: 14px;
+    cursor: pointer;
+    color: #666;
+}
+
+#nav .sidebar-title {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    letter-spacing: 0.02em;
+    border: 1px solid #ebeef3;
+    padding-left: 22px;
+}
+
+#nav .sidebar-title + .sidebar-title {
+    margin-top: -1px;
+}
+
+#nav .sidebar-title:hover {
+    background-color: #d9eceb;
+}
+
+#nav .sidebar-title.current {
+    background-color: #40d0a7;
+    color: #fff;
+}
+
+#nav .sidebar-title img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#nav .sidebar-title span {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    width: 13px;
+    height: 13px;
+    vertical-align: middle;
+    margin-top: 10px;
+    margin-left: -10px;
+    background: url(../images/arrow_bottom.png) no-repeat 0 0/100%;
+}
+
+#nav span.current {
+    background: url(../images/arrow_top.png) no-repeat 0 0/100%;
+}
+
+#nav .sidebar-content {
+    display: none;
+}
+
+#nav .sidebar-content li {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 53px;
+    border: 1px solid #ebeef3;
+}
+
+#nav .sidebar-content li + li {
+    margin-top: -1px;
+}
+
+#nav .sidebar-content li:hover {
+    background-color: #d9eceb;
+}
+
+#nav .sidebar-content li a {
+    color: #666;
+    display: block;
+}
+
+#nav .sidebar-content li a.current {
+    color: #40d0a7;
+}
+
+/*内容部分*/
+#content {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 220px;
+    right: 0;
+    padding: 4px 4px 0 4px;
+    font-size: 16px;
+    line-height: 150%;
+}
+
+#content .address3,
+#content .date {
+    display: inline-block;
+}
+
+#content .inlineBlock {
+    display: inline-block;
+}
+
+#content input {
+    border: 1px solid #40d0a7;
+    border-radius: 4px;
+    transition: box-shadow ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#content input[type="text"]:focus {
+    box-shadow: 0px 0px 5px 0px #40d0a7, -0px -0px 1px 0px #40d0a7;
+}
+
+#content input[type="text"],
+#content input[type="password"] {
+    font-size: 14px;
+    padding-left: 5px;
+    width: 120px;
+    margin-right: 10px;
+}
+
+#content input[disabled] {
+    background-color: #f6f9fa;
+    cursor: not-allowed;
+    border: none;
+}
+
+/*所有select样式*/
+#content select {
+    padding-bottom: 4px;
+    margin-right: 10px;
+    background-color: #f6f4ff;
+    color: #000;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+#content select[disabled] {
+    background-color: #bababa;
+    cursor: not-allowed;
+}
+
+/*所有表格组件默认样式*/
+#content table {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 4px;
+    collapse: collapse;
+    border-spacing: 0;
+    min-width: 680px;
+}
+
+#content table th,
+#content table td {
+    border: 1px solid #eee;
+    font-size: 16px;
+    text-align: center;
+    min-width: 80px;
+    padding: 2px 6px;
+    height: 32px;
+    line-height: 32px;
+}
+
+#content table th {
+    background-color: #f5f5f5;
+    color: #b0b0b0;
+
+}
+
+#content table td {
+    color: #8c8c8c;
+}
+
+#content table tr:hover {
+    background-color: #fafafa;
+}
+
+/*#content table tr:nth-of-type(2n) td {*/
+/*background-color: #edffca;*/
+/*}*/
+
+/*#content table tr:nth-of-type(2n-1) td {*/
+/*background-color: #dfffbc;*/
+/*}*/
+
+#content table th + th,
+#content table td + td {
+    border-left: none;
+}
+
+#content td .monitor {
+    width: 16px;
+    height: 16px;
+}
+#content td img {
+    width: 80px;
+    height: 60px;
+}
+
+#content td.operation {
+    text-align: center
+}
+
+#content table span {
+    display: inline-block;
+    padding: 0 10px;
+    background-color: #40d0a7;
+    color: #fff;
+    cursor: pointer;
+    line-height: 180%;
+    border-radius: 4px;
+}
+
+#content table span + span {
+    margin-left: 10px;
+}
+
+/*所有分页样式 跟随表格*/
+#content .paging {
+    line-height: 150%;
+    font-size: 16px;
+    padding: 0 20px;
+    color: #3c4a55;
+}
+
+#content .paging .first,
+#content .paging .last,
+#content .paging .prev,
+#content .paging .next {
+    text-align: center;
+    font-size: 16px;
+    line-height: 150%;
+    background-color: #40d0a7;
+    color: #fff;
+    margin-right: 20px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+#content .paging span {
+    color: #40d0a7;
+}
+
+#content .paging .input-go {
+    font-size: 16px;
+    line-height: 120%;
+    width: 60px;
+    margin-left: 20px;
+}
+
+#content .paging .go {
+    text-align: center;
+    font-size: 16px;
+    line-height: 150%;
+    background-color: #40d0a7;
+    width: 30px;
+    margin-left: 5px;
+    color: #fff;
+}
+/*所有权限分配样式*/
+#content .permission i {
+    float: left;
+    margin-top: 8px;
+    background: url(../images/permission_add.png) no-repeat 0 0 / 100%;
+    width:16px;
+    height:16px;
+    cursor: pointer;
+}
+#content .permission i.open {
+    background-image: url(../images/permission_delete.png);
+}
+#content .permission ul {
+    display: none;
+    padding-left: 16px;
+}
+inputNameAndPhone {
+    display: inline-block;
+}
+
+/*所有 导航条 查找 筛选 样式*/
+#content .nav {
+    color: #666;
+}
+
+#content .nav div {
+    font-size: 16px;
+    display: inline-block;
+    line-height: 30px;
+    padding: 0 6px;
+    cursor: pointer;
+    background-color: #ebeef3;
+}
+
+#content .nav div + div {
+    margin-left: 8px;
+}
+
+#content .nav div:hover,
+#content .nav .current {
+    background-color: #40d0a7;
+    color: #fff;
+}
+
+#content .filter {
+    min-width: 800px;
+    background-color: #f6f9fa;
+    color: #666;
+    line-height: 150%;
+    padding: 4px 0 4px 10px;
+}
+
+#content .filter input[class="name"] {
+    width: 80px;
+}
+
+#content .filter input[class="identityCard"] {
+    width: 180px;
+}
+
+#content .filter select {
+    margin-top: -3px;
+    font-size: 14px;
+    height: 22px;
+    color: #000;
+    padding-bottom: 0;
+}
+
+/*所有添加幼儿园、家长、老师、宝宝数据样式*/
+#content .add-Newdata,
+#content .look-Detaildata {
+    border: 1px solid #ebeef3;
+    padding: 20px 15px 10px 15px;
+    background-color: #fbfffb;
+}
+
+#content .add-Newdata::after,
+#content .look-Detaildata::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+#content .add-Newdata h3,
+#content .add-Newdata > div,
+#content .look-Detaildata h3,
+#content .look-Detaildata > div {
+    color: #34a27e;
+}
+
+#content .add-Newdata h3,
+#content .look-Detaildata h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    line-height: 150%;
+}
+
+#content .add-Newdata > div,
+#content .look-Detaildata > div {
+    line-height: 200%;
+    margin-top: 10px;
+    color: #194533;
+    padding-right: 40px;
+}
+
+#content .add-Newdata > div > input[type="text"],
+#content .look-Detaildata > div > input[type="text"] {
+    display: block;
+    width: 600px;
+    line-height: 200%;
+}
+
+#content .add-Newdata > div input[type="checkbox"],
+#content .look-Detaildata > div input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+#content .add-Newdata > div textarea,
+#content .look-Detaildata > div textarea {
+    display: block;
+    resize: none;
+    width: 600px;
+    min-height: 180px;
+    font-size: 15px;
+    border: 1px solid #40d0a7;
+    border-radius: 4px;
+    padding: 5px;
+    color: #333;
+    line-height:150%;
+}
+#content .add-Newdata > div textarea:focus,
+#content .look-Detaildata > div textarea:focus {
+    box-shadow: 0px 0px 5px 0px #40d0a7, -0px -0px 1px 0px #40d0a7;
+}
+
+#content .add-Newdata > div.postData,
+#content .look-Detaildata > div.postData {
+    width: 100%;
+}
+
+#content .add-Newdata > div.postData input,
+#content .look-Detaildata > div.postData input {
+    background-color: #40d0a7;
+}
+
+#content .add-Newdata .mark,
+#content .look-Detaildata .mark {
+    padding-left: 15px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+#content .add-Newdata .remark,
+#content .look-Detaildata .remark {
+    width: 600px;
+    height: 100px;
+    resize: none;
+    font-size: 16px;
+    padding: 5px;
+}
+
+/*所有查看幼儿园、家长、老师、宝宝详细信息样式*/
+#content .btn,
+#content .btn-skyblue,
+#content .save,
+#content .clear {
+    display: inline-block;
+    padding: 0 14px;
+    line-height: 22px;
+    background-color: #40d0a7;
+    cursor: pointer;
+    color: #fff;
+}
+#content .btn-skyblue {
+    border-radius: 4px;
+    background-color: #31beff;
+}
+
+#content .btn-skyblue + .btn-skyblue {
+    margin-left: 10px;
+}
+
+#content .save + .clear {
+    margin-left: 20px;
+}
+
+#content .look-Detaildata {
+    position: absolute;
+    top: 4px;
+    min-width: 680px;
+    min-height: 100%;
+    left: 4px;
+    right: 4px;
+    padding: 10px 15px;
+    background-color: #fbfffb;
+    color: #000;
+    border: 1px solid #ebeef3;
+}
+
+/*推送消息界面*/
+#content .pushInfo .pushInfo-info {
+    width: 100%;
+    padding: 8px 60px;
+    margin: 0 auto;
+    background-color: #fbfffb;
+}
+
+#content .pushInfo .pushInfo-info-title {
+    width: 100%;
+    min-width: 600px;
+}
+
+#content .pushInfo .main {
+    margin-top: 10px;
+}
+
+#content .pushInfo div span {
+    position: absolute;
+    vertical-align: top;
+    margin-left: -50px;
+}
+
+#content .pushInfo div.pushInfo-info-main {
+    margin-top: 5px;
+}
+
+#content .pushInfo div textarea {
+    width: 100%;
+    min-width: 600px;
+    height: 316px;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 6px;
+    resize: none;
+}
+
+/*消息历史*/
+#content .infoHistory table td:nth-last-of-type(2) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+#content .infoHistory textarea {
+    width: 600px;
+    height: 320px;
+    resize: none;
+    font-size: 18px;
+}
+
+#content .infoCheck .reject {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60px;
+    width: 660px;
+    margin: 0 auto;
+}
+
+
+
+
+/*升班管理*/
+#content .upGrade .nowClass {
+    margin-top: 4px;
+    background-color: #dfffbc;
+    line-height: 150%;
+    padding: 4px 0 4px 10px;
+}
+
+#content .upGrade .nowClass .save {
+    background-color: #b8efc5;
+}
+
+
+
+/*课程管理 添加课程*/
+
+#content .curriculumManage table.course input {
+    text-align: center;
+    margin: 0;
+    width: 60px;
+    border: none;
+    background-color: transparent;
+}
+
+#content .curriculumManage table.course input:hover {
+    border: 1px solid #006105;
+}
+
+#content .curriculumManage .demo table {
+    width: 600px;
+    margin-left: 0;
+}
+
+/*食谱设置*/
+#content .date {
+    margin-left: 10px;
+}
+
+#content .cookbookSet .food,
+#content .cookbookList .food {
+    width: 300px;
+    float: left;
+    margin: 10px 0 0 10px;
+    border: 1px dashed #006105;
+    padding: 10px;
+}
+
+#content .cookbookSet div + div,
+#content .cookbookList div + div {
+    margin-top: 10px;
+}
+
+#content .cookbookSet .cookInfo,
+#content .cookbookList .cookInfo {
+    position: relative;
+    height: 120px;
+    line-height: 120px;
+}
+
+#content .cookbookSet label,
+#content .cookbookList label {
+    padding: 0 5px;
+    height: 20px;
+    line-height: 22px;
+    background-color: #40d0a7;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 86px;
+}
+
+#content .cookbookSet img.pic,
+#content .cookbookList img.pic {
+    width: 120px;
+    height: 100px;
+    margin-left: 4px;
+    border: 0;
+    outline: none;
+}
+
+#content .cookbookSet textarea,
+#content .cookbookList textarea {
+    resize: none;
+    width: 200px;
+    height: 50px;
+    vertical-align: bottom;
+}
+
+#content .cookbookSet .operation,
+#content .cookbookList .operation {
+    float: left;
+    width: 100%;
+    padding-left: 10px;
+    margin-top: 4px;
+}
+
+#content .cookbookSet .operation input + input,
+#content .cookbookList .operation input + input {
+    margin-left: 14px;
+}
+/*全园缴费*/
+#content .payFees label {
+    display: block;
+    line-height:80px;
+}
+#content .payFees label + label {
+    margin-top: 10px;
+}
+#content .payFees input[type="radio"] {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+
+}
+#content .payFees label img {
+    width: 80px;
+    height: 80px;
+    margin: 0 30px;
+    vertical-align: middle;
+}
+#content .payFees label img + span {
+    font-size: 30px;
+    line-height:80px;
+    vertical-align: middle;
+}
+#content .payFees button {
+    margin-top: 10px;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    line-height:40px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #40d0a7;
+    font-size: 24px;
+    cursor: pointer;
+}
+/*校园简介、活动*/
+#content .schoolSet iframe {
+    display: block;;
+    margin: 0 auto;
+}
+
+#content .schoolSet input[type="file"] {
+    display: none;
+}
+
+#content .schoolSet .introDetail {
+    width: 500px;
+    margin: 0 auto;
+}
+
+#content .schoolSet label {
+    position: relative;
+    display: block;
+    height: 200px;
+    border-bottom: 1px solid #ccc;
+    background: url(../images/addImage.jpg) no-repeat center center;
+}
+
+#content .schoolSet label img {
+    width: 100%;
+    height: 100%;
+}
+
+#content .schoolSet label img + .clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #40d0a7;
+    display: none;
+}
+
+#content .schoolSet label:hover .clear {
+    display: inline-block;
+
+}
+
+#content .schoolSet .content {
+    position: relative;
+    height: 200px;
+}
+
+#content .schoolSet textarea {
+
+}
+
+#content .schoolSet textarea {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    resize: none;
+    text-indent: 2em;
+    font-size: 14px;
+}
+
+#content .schoolSet .content .clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #40d0a7;
+    display: none;
+}
+
+#content .schoolSet .content:hover .clear {
+    display: inline-block;
+}
+
+#content .schoolSet .control-board {
+    position: fixed;
+    top: 90px;
+}
+
+#content .schoolSet .control-board input {
+    margin-left: 10px;
+}
+
+/*校园活动*/
+#content .schoolSet .control-board-active {
+    top: 150px;
+}
+
+#content h3 {
+    color: #40d0a7;
+    line-height: 150%;
+}
+
+#content .schoolSet .activity_input {
+    width: 100%;
+    line-height: 24px;
+}
+
+#content .schoolSet .activityIntro {
+    width: 750px;
+    margin: 0 auto;
+}
+
+#content .schoolSet .activityIntro img {
+    display: block;
+    height: 300px;
+    width: 100%;
+}
+
+#content .schoolSet .activityIntro p {
+    text-indent: 2em;
+    line-height: 150%;
+    color: #333;
+}
+
+
