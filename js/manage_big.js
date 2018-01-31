@@ -15,7 +15,6 @@ $(function () {
     if(sessionStorage.info){
         var info = JSON.parse(sessionStorage.info),
             token = info.token;
-        console.log(info);
     }
     var url = Vue.prototype.$getOrigin();
     var baseUrl = url + '/bigcontrol';
@@ -1852,7 +1851,7 @@ $(function () {
             },
         },
         watch:{
-            xhr: function () {
+            filter_data: function () {
                 $.ajax(this.xhr);
             }
         },
@@ -2185,7 +2184,7 @@ $(function () {
             }
         },
         watch: {
-            xhr: function () {
+            filter_data: function () {
                 $.ajax(this.xhr);
             }
         },
@@ -2357,7 +2356,7 @@ $(function () {
             },
         },
         watch: {
-            xhr: function () {
+            filter_data: function () {
                 $.ajax(this.xhr);
             }
         },
@@ -2388,7 +2387,6 @@ $(function () {
                         traditional: true,
                         success: function (data) {
                             if(data.state){
-                                console.log(this.data);
                                 alert('清除成功');
                             }else {
                                 alert('清除失败');
@@ -3301,7 +3299,6 @@ $(function () {
                     type: 'post',
                     traditional: true,
                     success: function (data) {
-                        console.log(this.data);
                         loader.show = false;
                         switch(data.state){
                             case 0: return;
@@ -3507,7 +3504,6 @@ $(function () {
                     type: 'post',
                     success: function (data) {
                         if(data.state){
-                            console.log(data);
                             self.count = data.count;
                             self.pageCount = data.info.pageCount;
                             self.responseData = data.info.list
@@ -3519,9 +3515,6 @@ $(function () {
                                 }
                             });
                         }
-                    },
-                    error: function () {
-                        console.log(this.data);
                     }
                 }
             }
@@ -4682,7 +4675,6 @@ $(function () {
                 switch(value){
                     case '查看/修改':
                         this.show_detail = true;
-                        console.log(this.detail_data);
                         break;
                     case '删除':
                         confirm('是否确认删除 ' + this.detail_data.equipmentName) &&
@@ -4778,7 +4770,6 @@ $(function () {
 
                 Vue.set(self.detail_data,'img_show',this.result);
                 self.detail_data.img = self.$disposeBase64(this.result);
-                console.log(self.detail_data);
             }
         }
     });
@@ -4864,7 +4855,6 @@ $(function () {
                     },
                     type: 'post',
                     success: function (data) {
-                        console.log(data);
                         if(data.state){
                             self.pageCount = data.info.pageCount;
                             data.info.list.forEach(function (item,index,arr) {
@@ -4944,7 +4934,6 @@ $(function () {
                     data: this.dispose,
                     type: 'post',
                     success: function (data) {
-                        console.log(self.dispose);
                         switch(data.state){
                             case 1:
                                 self.dispose = {
@@ -5191,12 +5180,12 @@ $(function () {
                         '<option :value="5">家长考勤</option>'+
                         '<option :value="6">全园视频+考勤</option>'+
                         '<option :value="7">家长视频+考勤</option>'+
-                        '<option :value="8">手动开通家长视频</option>'+
-                        '<option :value="9">手动开通家长考勤</option>'+
-                        '<option :value="11">手动开通家长视频+考勤</option>'+
-                        '<option :value="12">手动开通全园视频</option>'+
-                        '<option :value="13">手动开通全园考勤</option>'+
-                        '<option :value="16">手动开通全园视频+考勤</option>'+
+                        '<option :value="8">总控制端帮家长买视频</option>'+
+                        '<option :value="9">总控制端帮家长买考勤</option>'+
+                        '<option :value="11">总控制端帮家长买视频+考勤</option>'+
+                        '<option :value="12">总控制端帮全园买视频</option>'+
+                        '<option :value="13">总控制端帮全园买考勤</option>'+
+                        '<option :value="16">总控制端帮全园买视频+考勤</option>'+
                     '</select>'+
                     '<div class="btn-skyblue" @click="exportOrder">导出订单</div>'+
                 '</div>'+
@@ -5233,7 +5222,7 @@ $(function () {
                     state: this.state,
                     name: this.name,
                     phoneNumber: this.phoneNumber,
-                    babyName: '',
+                    babyName: this.babyName,
                     type: this.type
                 }
             },
@@ -5244,8 +5233,6 @@ $(function () {
                     data: this.filter_data,
                     type: 'post',
                     success: function (data) {
-                        console.log(this.data);
-                        console.log(data);
                         if(data.state !== 1) return;
                         self.pageCount = data.pageCount;
                         self.tableItem = data.info.map(function (item,index) {
@@ -5274,17 +5261,17 @@ $(function () {
                                         case 7:
                                             return '家长视频+考勤';
                                         case 8:
-                                            return '手动开通家长视频';
+                                            return '总控制端帮家长买视频';
                                         case 9:
-                                            return '手动开通家长考勤';
+                                            return '总控制端帮家长买考勤';
                                         case 11:
-                                            return '手动开通家长视频+考勤';
+                                            return '总控制端帮家长买视频+考勤';
                                         case 12:
-                                            return '手动开通全园视频';
+                                            return '总控制端帮全园买视频';
                                         case 13:
-                                            return '手动开通全园考勤';
+                                            return '总控制端帮全园买考勤';
                                         case 16:
-                                            return '手动开通全园视频+考勤';
+                                            return '总控制端帮全园买视频+考勤';
                                     }
                                 },
                                 monthCount: item.monthCount,
@@ -5300,7 +5287,7 @@ $(function () {
             }
         },
         watch: {
-            xhr: function () {
+            filter_data: function () {
                 $.ajax(this.xhr);
             }
         },
@@ -5509,7 +5496,6 @@ $(function () {
                     type: 'post',
                     success: function (data) {
                         if(data.state){
-                            console.log(data);
                             self.pageCount = data.info.pageCount;
                             self.responseData = data.info.list;
                             self.tableItem = self.responseData.map(function (item,index) {
@@ -5622,7 +5608,6 @@ $(function () {
                 this.detail_data.countries = address3.counties;
                 this.detail_data.token = token;
                 if(this.$isNotFilled(this.detail_data,this.mustFill)) return;
-                console.log(this.detail_data);
                 $.ajax({
                     url: baseUrl + '/updateEmployee.do',
                     data: this.detail_data,
@@ -5638,9 +5623,6 @@ $(function () {
                                 alert('该手机号已注册');
                                 break;
                         }
-                    },
-                    error: function () {
-                        console.log(this.data);
                     }
                 });
             }
@@ -6726,7 +6708,6 @@ $(function () {
                     type: 'post',
                     success: function (data) {
                         if(data.state){
-                            console.log(data);
                             self.applyList.pageCount = data.info.pageCount;
                             data.info.list.forEach(function (item,index,arr) {
                                 arr[index].equipmentAll = JSON.parse(item.equipmentAll);
@@ -6961,14 +6942,12 @@ $(function () {
                     type: 'post',
                     success: function (data) {
                         if(data.state){
-                            console.log(data);
                             self.applyList.pageCount = data.info.pageCount;
                             data.info.list.forEach(function (item,index,arr) {
                                 arr[index].equipmentAll = JSON.parse(item.equipmentAll);
                             });
 
                             self.applyList.responseData = data.info.list;
-                            console.log(self.applyList.responseData);
                             self.applyList.tableItem = self.applyList.responseData.map(function (item,index) {
                                 return {
                                     equipmentName: item.equipmentAll.map(function (item,index) {

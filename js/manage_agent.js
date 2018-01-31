@@ -16,7 +16,6 @@ $(function () {
     if(sessionStorage.info){
         var info = JSON.parse(sessionStorage.info),
             token = info.token;
-        console.log(info);
     }
     var url = Vue.prototype.$getOrigin();
     var baseUrl = url + '/agent';
@@ -140,7 +139,6 @@ $(function () {
              },
              type: 'post',
              success: function (data) {
-                 console.log(data);
                  if( data.state !== 1 ) return;
                  success(data);
                  // resolve({
@@ -153,9 +151,6 @@ $(function () {
                  //        return agents;
                  //    }
                  // });
-             },
-             error: function () {
-                 console.log(this.data);
              }
          });
     });
@@ -434,7 +429,6 @@ $(function () {
                             type: 'post',
                             success: function (data) {
                                 if(data.state){
-                                    console.log(data);
                                     var url = data.info.url;
                                     var qrcode =  new QRCode('qrcode',{
                                         text: url,
@@ -456,7 +450,6 @@ $(function () {
                                             },
                                             type: 'post',
                                             success: function (data) {
-                                                console.log('验证');
                                                 if(data.state){
                                                     if(data.info.state){
                                                         clearInterval(this.timer);
@@ -549,7 +542,6 @@ $(function () {
                     },
                     type: 'post',
                     success: function (data) {
-                        console.log(data);
                         if(data.state){
                             self.responseData = data.info;
                             var tableItem = self.responseData.map(function (item,index) {
@@ -616,7 +608,6 @@ $(function () {
             },
             applyMoney: function () {
                 var self = this;
-                console.log(this.applyMoney);
                 if(this.$isNotFilled(this.apply_money)) return;
 
                 $.ajax({
@@ -634,9 +625,6 @@ $(function () {
                                 alert('信用额度不足');
                                 break;
                         }
-                    },
-                    error: function () {
-                        console.log(this.data);
                     }
                 });
             }
@@ -708,7 +696,6 @@ $(function () {
                     },
                     type: 'post',
                     success: function (data) {
-                        console.log(this.data);
                         if(data.state !== 1) return;
                         var tableItem = [];
                         self.pageCount = data.info.pageCount;
@@ -729,8 +716,6 @@ $(function () {
                             tableItem[index] = agent;
                         });
                         self.agents.tableItem = tableItem;
-                    },error: function () {
-                        console.log(this.data);
                     }
                 }
             }
@@ -817,7 +802,6 @@ $(function () {
                     type: 'post',
                     success: function (data) {
                         if(data.state !==1) return;
-                        console.log(this.data);
                         var tableItem = [];
                         self.pageCount = data.info.pageCount;
                         data.info.list.forEach(function(item,index){
@@ -831,9 +815,6 @@ $(function () {
                             tableItem[index] = kindergarten;
                         });
                         self.tableItem = tableItem;
-                    },
-                    error: function () {
-                        console.log(this.data);
                     }
                 }
             }
@@ -912,7 +893,6 @@ $(function () {
                     },
                     type: 'post',
                     success: function (data) {
-                        console.log(this.data);
                         if(data.state !== 1) return;
                         self.pageCount = data.info.pageCount;
                         self.responseData = data.info.list;
@@ -1245,9 +1225,6 @@ $(function () {
                             tableItem[index] = visitInfo;
                         });
                         self.history.tableItem = tableItem;
-                    },
-                    error: function () {
-                        console.log(this.data);
                     }
                 }
             }
@@ -1298,9 +1275,6 @@ $(function () {
                                 if(data.state !== 1) return;
                                 $.ajax(self.xhr);
                                 alert('删除成功');
-                            },
-                            error: function () {
-                                console.log(this.data);
                             }
                         })
                         break;
@@ -1725,7 +1699,6 @@ $(function () {
                     type: 'post',
                     success: function (data) {
                         if(data.state){
-                            console.log(data);
                             var tableItem = [];
                             self.pageCount = data.info.pageCount;
                             self.responseData = data.info.list;
@@ -1877,8 +1850,6 @@ $(function () {
                     type: 'post',
                     success: function (data) {
                         if(data.state){
-                            console.log(data);
-                            console.log(this.data);
                             self.pageCount = data.info.pageCount;
                             self.responseData = data.info.list;
                             self.tableItem = self.responseData.map(function (item) {
@@ -1924,18 +1895,14 @@ $(function () {
                 switch(value){
                     case '查看':
                         this.show_detail = true;
-                        console.log(this.detail_data);
-                        // console.log(this.detail_data.isread);
                         this.detail_data.isread == 0 &&
+                        //点查看的时候表示这条信息已读
                         $.ajax({
                             url: baseUrl + '/readAgentMessage.do',
                             data: {
                                 agentMessageId: this.detail_data.agentMessageId
                             },
                             type: 'post',
-                            success: function (data) {
-                                console.log(this.data);
-                            }
                         });
                         break;
                 }

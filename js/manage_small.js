@@ -15,7 +15,6 @@ $(function () {
         var info = JSON.parse(sessionStorage.info),
         token = info.token,
         gartenId = info.gartenId;
-        console.log(info);
     }
     var url = Vue.prototype.$getOrigin();
     var baseUrl = url + '/smallcontrol';
@@ -357,7 +356,6 @@ $(function () {
         },
         methods: {
             giveTeacherClass: function () {
-                console.log(this.classIds);
                 this.$emit('giveTeacherClass',[this.classIds])
             }
         },
@@ -396,7 +394,6 @@ $(function () {
                     });
                 }
             }
-            console.log(teacherClass);
             this.teacherClass = teacherClass;
         }
     });
@@ -698,7 +695,6 @@ $(function () {
         },
         created: function () {
             this.detail_data = info;
-            console.log(info);
         }
     });
     // 幼儿园信息
@@ -933,12 +929,10 @@ $(function () {
                     },
                     type: 'post',
                     success: function (data) {
-                        console.log(data);
                         if(data.state !== 1) return;
                         self.personCount = data.count;
                         self.pageCount = data.info.pageCount;
                         self.responseData = data.info.list;
-                        console.log(self.responseData);
                         self.tableItem = self.responseData.map(function (item) {
                             return {
                                 job: item.job,
@@ -2931,7 +2925,7 @@ $(function () {
             }
         },
         watch: {
-            xhr: function () {
+            filter_data: function () {
                 $.ajax(this.xhr);
             }
         },
@@ -3696,7 +3690,6 @@ $(function () {
                             self.show_current = '课程列表';
                         },
                         error: function () {
-                            console.log(this.data);
                             result.error_count += 1;
                             result.hint = result.complated_count;
                         }
@@ -3835,9 +3828,6 @@ $(function () {
                     }
                 })
             }
-        },
-        mounted: function () {
-            console.log(this.$refs.file);
         }
     });
     // 食谱列表
@@ -4275,7 +4265,6 @@ $(function () {
                 reader.readAsDataURL(file.files[0]);
                 reader.onload = function () {
                     board.img.splice(imgIndex,1,this.result);
-                    console.log(this.result);
                 }
             },
             bindContent: function (e,board,contentIndex) {
@@ -4520,7 +4509,6 @@ $(function () {
                         this.show_detail = true;
                         break;
                     case '打开活动详情':
-                        // console.log(this.detail_data.contentHtml);
                         window.open(this.detail_data.contentHtml);
                         break;
                     case '查看报名':
